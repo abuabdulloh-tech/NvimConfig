@@ -1,39 +1,34 @@
--- Leader tugmasini belgilash (odatda Space yoki \ ishlatiladi)
-vim.g.mapleader = " "
+vim.g.mapleader = " " -- Space tugmasini Leader qilish
+local keymap = vim.keymap
 
-local keymap = vim.keymap -- Qisqartma yaratib olamiz
+-- 1. Sidebar (Fayllar ro'yxati)
+keymap.set("n", "<leader>e", ":Lexplore<CR>", { desc = "Sidebarni ochish" })
 
--- --- UMUMIY BUYRUQLAR ---
-
--- Faylni tezda saqlash (Ctrl + s)
-keymap.set("n", "<C-s>", ":w<CR>", { desc = "Faylni saqlash" })
-
--- Neovim-dan chiqish (Space + q)
+-- 2. Fayl operatsiyalari
+keymap.set("n", "<C-s>", ":w<CR>", { desc = "Saqlash" })
 keymap.set("n", "<leader>q", ":q<CR>", { desc = "Chiqish" })
 
--- --- MATN BILAN ISHLASH ---
+-- 3. Oynalar (Window) boshqaruvi
+keymap.set("n", "<leader>sv", "<C-w>v") -- Vertikal bo'lish
+keymap.set("n", "<leader>sh", "<C-w>s") -- Gorizontal bo'lish
+keymap.set("n", "<C-h>", "<C-w>h")       -- Chapga o'tish
+keymap.set("n", "<C-l>", "<C-w>l")       -- O'ngga o'tish
 
--- Visual rejimda qatorlarni yuqoriga/pastga surish (Alt + j/k)
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- 4. Shortcutlarni pastda ko'rsatish (Siz so'ragan Help paneli)
+local help_text = [[
+--- SHORTCUTLAR RO'YXATI ---
+ <leader>e  : Sidebar (Fayllar)
+ <C-s>      : Faylni saqlash
+ <leader>h  : Ushbu yordamni ko'rish
+ <leader>sv : Vertikal bo'lish
+ <leader>sh : Gorizontal bo'lish
+ <leader>nh : Qidiruvni tozalash
+ <leader>q  : Neovimdan chiqish
+----------------------------]]
 
--- Nusxa ko'chirilgan so'zni almashtirganda keshni saqlab qolish
-keymap.set("x", "<leader>p", [["_dP]])
+keymap.set("n", "<leader>h", function()
+    print(help_text)
+end, { desc = "Shortcutlarni ko'rish" })
 
--- --- OYNALAR (WINDOW) BILAN ISHLASH ---
-
--- Oynani vertikal va gorizontal bo'lish
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Vertikal bo'lish" })
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Gorizontal bo'lish" })
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Oynalarni tenglashtirish" })
-keymap.set("n", "<leader>sx", ":close<CR>", { desc = "Oynani yopish" })
-
--- Oynalar orasida harakatlanish (Ctrl + h/j/k/l)
-keymap.set("n", "<C-h>", "<C-w>h")
-keymap.set("n", "<C-j>", "<C-w>j")
-keymap.set("n", "<C-k>", "<C-w>k")
-keymap.set("n", "<C-l>", "<C-w>l")
-
--- --- QIDIRUV ---
--- Qidiruv natijalari orasidagi yoritishni o'chirish
+-- Qidiruvni tozalash
 keymap.set("n", "<leader>nh", ":nohlsearch<CR>")

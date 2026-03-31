@@ -1,7 +1,17 @@
 local opt = vim.opt
 
-opt.number = true           -- Satr raqamlari
-opt.relativenumber = true   -- Nisbiy raqamlar
+-- Umumiy sozlamalar
+opt.number = true            -- Satr raqamlari
+opt.relativenumber = true    -- Nisbiy raqamlar
+opt.tabstop = 4              -- Tab hajmi
+opt.shiftwidth = 4
+opt.expandtab = true         -- Tab o'rniga bo'sh joy
+opt.smartindent = true
+opt.cursorline = true        -- Kursor qatorini belgilash
+opt.termguicolors = true     -- Ranglar sifatini oshirish
+opt.mouse = "a"              -- Sichqonchani yoqish
+
+-- Windows Clipboard (Hech nima yuklamasdan ishlash uchun)
 vim.g.clipboard = {
   name = 'PowerShellClipboard',
   copy = {
@@ -14,8 +24,12 @@ vim.g.clipboard = {
   },
   cache_enabled = 0,
 }
-opt.clipboard = "unnamedplus" -- Windows clipboard bilan ishlash
-opt.smartindent = true      -- Avtomatik chekinish
-opt.mouse = "a"             -- Sichqonchani yoqish
-opt.ignorecase = true       -- Qidiruvda katta-kichik harfni farqlamaslik
-opt.termguicolors = true    -- Ranglar sifatini oshirish
+opt.clipboard = "unnamedplus"
+
+-- Sidebar (Netrw) ko'rinishini sozlash
+vim.g.netrw_banner = 0       -- Bannerlarni o'chirish
+vim.g.netrw_winsize = 25     -- Sidebar kengligi (%)
+vim.g.netrw_liststyle = 3    -- Daraxtsimon ko'rinish
+
+-- Pastki status qatorida doimiy eslatma
+opt.statusline = " %f %m %= %y | [SPC+e] Sidebar | [SPC+h] Help "
