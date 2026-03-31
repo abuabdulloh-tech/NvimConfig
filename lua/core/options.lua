@@ -9,6 +9,7 @@ opt.expandtab = true         -- Tab o'rniga bo'sh joy
 opt.smartindent = true
 opt.cursorline = true        -- Kursor qatorini belgilash
 opt.termguicolors = true     -- Ranglar sifatini oshirish
+vim.cmd("syntax on")
 opt.mouse = "a"              -- Sichqonchani yoqish
 
 -- Windows Clipboard (Hech nima yuklamasdan ishlash uchun)
